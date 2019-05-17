@@ -36,9 +36,4 @@ public class MainTest {
         int randomB = rand.nextInt();
         assertEquals(Main.nthMagicalNumber(1, randomA, randomB), ((Math.min(randomA, randomB)) % MODULO));
     }
-
-    @Test
-    public void lowestCommonMultipleTest() {
-        assertEquals(Main.lowestCommonMultiple(456, 345), 52440);
-    }
 }

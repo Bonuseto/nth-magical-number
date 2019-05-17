@@ -52,7 +52,7 @@ public class Main {
         return a;
     }
 
-    public static int lowestCommonMultiple(final int a, final int b) {
+    private static int lowestCommonMultiple(final int a, final int b) {
         return a * (b / greatestCommonDenominator(a, b));
     }
 
