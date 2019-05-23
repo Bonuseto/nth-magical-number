@@ -33,6 +33,19 @@ public class MainTest {
     }
 
     @Test
+    public void returnEvaluatedTest() {
+
+        assertEquals(Main.nthMagicalNumber(53776, 22434, 31343 ),703148862);
+    }
+
+    @Test
+    public void lowestCommonMultipleTest() {
+
+        assertEquals(Main.lowestCommonMultiple(34,56   ),952);
+    }
+
+
+    @Test
     public void nthMagicalNumberNequalOneTest() {
         Random rand = new Random();
         int randomA = rand.nextInt();

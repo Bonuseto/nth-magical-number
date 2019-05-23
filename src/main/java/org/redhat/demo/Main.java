@@ -1,3 +1,5 @@
+package org.redhat.demo;
+
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -52,7 +54,7 @@ public class Main {
         return a;
     }
 
-    private static int lowestCommonMultiple(final int a, final int b) {
+    public static int lowestCommonMultiple(final int a, final int b) {
         return a * (b / greatestCommonDenominator(a, b));
     }
 
@@ -68,8 +70,8 @@ public class Main {
         return modulate(nthNonZeroMagicalNumber(N, Math.min(A, B), Math.max(A, B)));
     }
 
-    public static void main(String[] args) {
-        int result = nthMagicalNumber(49995, 456, 345);
-        System.out.println(result);
-    }
+    /*public static void main(String[] args) {
+        int result = nthMagicalNumber(53776, 22434, 31343);
+
+    }*/
 }
