@@ -1,6 +1,9 @@
+package org.redhat.demo;
+
 import java.util.Random;
 
 import org.junit.Test;
+import org.redhat.demo.Main;
 
 import static org.junit.Assert.assertEquals;
 
