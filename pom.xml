@@ -10,6 +10,31 @@
   <build>
     <plugins>
       <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <configuration>
+          <descriptors>
+            <descriptor>src/test/assembly/benchmarks.xml</descriptor>
+          </descriptors>
+        </configuration>
+        <executions>
+          <execution>
+            <id>make-assembly</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <attach>true</attach>
+              <archive>
+                <manifest>
+                  <mainClass>org.openjdk.jmh.Main</mainClass>
+                </manifest>
+              </archive>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
@@ -72,7 +97,7 @@
           </execution>
         </executions>
         <configuration>
-          <mutationThreshold>90</mutationThreshold>
+          <mutationThreshold>89</mutationThreshold>
           <targetClasses>
             <param>org.redhat.demo.*</param>
           </targetClasses>
@@ -83,6 +108,9 @@
       </plugin>
     </plugins>
   </build>
+  <properties>
+    <jmh.version>1.21</jmh.version>
+  </properties>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -91,7 +119,18 @@
         4.12
       </version>
     </dependency>
+    <dependency>
+      <groupId>org.openjdk.jmh</groupId>
+      <artifactId>jmh-core</artifactId>
+      <version>${jmh.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.openjdk.jmh</groupId>
+      <artifactId>jmh-generator-annprocess</artifactId>
+      <version>${jmh.version}</version>
+    </dependency>
   </dependencies>
+
 
 
 </project>

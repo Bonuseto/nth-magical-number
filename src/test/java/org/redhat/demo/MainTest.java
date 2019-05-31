@@ -3,7 +3,6 @@ package org.redhat.demo;
 import java.util.Random;
 
 import org.junit.Test;
-import org.redhat.demo.Main;
 
 import static org.junit.Assert.assertEquals;
 
@@ -35,15 +34,14 @@ public class MainTest {
     @Test
     public void returnEvaluatedTest() {
 
-        assertEquals(Main.nthMagicalNumber(53776, 22434, 31343 ),703148862);
+        assertEquals(Main.nthMagicalNumber(53776, 22434, 31343), 703148862);
     }
 
     @Test
     public void lowestCommonMultipleTest() {
 
-        assertEquals(Main.lowestCommonMultiple(34,56   ),952);
+        assertEquals(Main.lowestCommonMultiple(34, 56), 952);
     }
-
 
     @Test
     public void nthMagicalNumberNequalOneTest() {

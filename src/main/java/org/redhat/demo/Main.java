@@ -2,16 +2,30 @@ package org.redhat.demo;
 
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
+
+import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.BenchmarkMode;
+import org.openjdk.jmh.annotations.Fork;
+import org.openjdk.jmh.annotations.Mode;
+import org.openjdk.jmh.annotations.OutputTimeUnit;
+import org.openjdk.jmh.annotations.Scope;
+import org.openjdk.jmh.annotations.State;
+
 
 public class Main {
+public static final int MODULO = (int) (Math.pow(10, 9) + 7);
 
-    private static final int MODULO = (int) (Math.pow(10, 9) + 7);
 
-    private static int modulate(final long result) {
+    public static int modulate(final long result) {
         return (int) (result % MODULO);
     }
 
-    private static Integer[] steps(final int smaller, final int larger) {
+    public static boolean intIsNotNull(final int a) {
+        return a != 0;
+    }
+
+public static Integer[] steps(final int smaller, final int larger) {
         final int lcm = lowestCommonMultiple(smaller, larger);
         final int max = lcm / smaller;
         final int min = lcm / larger;
@@ -24,6 +38,7 @@ public class Main {
                 result[pos++] = (i * larger);
             }
         }
+
         return Arrays.stream(result)
                 .filter(Objects::nonNull)
                 .sorted()
@@ -31,7 +46,8 @@ public class Main {
                 .toArray(Integer[]::new);
     }
 
-    private static long nthNonZeroMagicalNumber(final int N, final int smaller, final int larger) {
+
+    public static long nthNonZeroMagicalNumber(final int N, final int smaller, final int larger) {
         final Integer[] stepsInCycle = steps(smaller, larger);
         final long lcm = stepsInCycle[stepsInCycle.length - 1];
         final int inOneCycle = stepsInCycle.length;
@@ -45,7 +61,8 @@ public class Main {
         return stepsInCycle[remainder] + evaluated;
     }
 
-    private static int greatestCommonDenominator(int a, int b) {
+
+    public static int greatestCommonDenominator(int a, int b) {
         while (b > 0) {
             int temp = b;
             b = a % b;
@@ -54,9 +71,11 @@ public class Main {
         return a;
     }
 
+
     public static int lowestCommonMultiple(final int a, final int b) {
         return a * (b / greatestCommonDenominator(a, b));
     }
+
 
     public static int nthMagicalNumber(final int N, final int A, final int B) {
         if (N == 0) {
@@ -70,8 +89,9 @@ public class Main {
         return modulate(nthNonZeroMagicalNumber(N, Math.min(A, B), Math.max(A, B)));
     }
 
-    /*public static void main(String[] args) {
-        int result = nthMagicalNumber(53776, 22434, 31343);
 
-    }*/
+    public static void main(String[] args) {
+        int result = nthMagicalNumber(4, 2, 3);
+        System.out.println(result);
+    }
 }
