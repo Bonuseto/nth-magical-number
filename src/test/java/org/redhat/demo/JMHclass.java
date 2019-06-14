@@ -57,7 +57,7 @@ public class JMHclass {
         return result;
     }
 
-   /* @Benchmark
+    @Benchmark
     public Integer[] benchmarkStepsIntOption(Blackhole hole) {
         Integer[] result;
         result = Main.steps(A, B);
@@ -79,5 +79,5 @@ public class JMHclass {
         result = Main.nthMagicalNumber(N, A, B);
         hole.consume(result);
         return result;
-    }*/
+    }
 }
