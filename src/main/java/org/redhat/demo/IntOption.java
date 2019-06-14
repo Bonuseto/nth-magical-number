@@ -1,20 +1,9 @@
 package org.redhat.demo;
 
 import java.util.Arrays;
-import java.util.Objects;
-import java.util.concurrent.TimeUnit;
 
-import org.openjdk.jmh.annotations.Benchmark;
-import org.openjdk.jmh.annotations.BenchmarkMode;
-import org.openjdk.jmh.annotations.Fork;
-import org.openjdk.jmh.annotations.Mode;
-import org.openjdk.jmh.annotations.OutputTimeUnit;
-import org.openjdk.jmh.annotations.Scope;
-import org.openjdk.jmh.annotations.State;
-
-
-public class Main {
-public static final int MODULO = (int) (Math.pow(10, 9) + 7);
+public class IntOption {
+    public static final int MODULO = (int) (Math.pow(10, 9) + 7);
 
 
     public static int modulate(final long result) {
@@ -25,11 +14,11 @@ public static final int MODULO = (int) (Math.pow(10, 9) + 7);
         return a != 0;
     }
 
-public static Integer[] steps(final int smaller, final int larger) {
+    public static int[] steps(final int smaller, final int larger) {
         final int lcm = lowestCommonMultiple(smaller, larger);
         final int max = lcm / smaller;
         final int min = lcm / larger;
-        final Integer[] result = new Integer[max * 2];
+        final int[] result = new int[max * 2];
 
         int pos = 0;
         for (int i = 1; i <= max; i++) {
@@ -40,15 +29,15 @@ public static Integer[] steps(final int smaller, final int larger) {
         }
 
         return Arrays.stream(result)
-                .filter(Objects::nonNull)
+                .filter(x -> x!=0)////Reason of slow perfomance?
                 .sorted()
                 .distinct()
-                .toArray(Integer[]::new);
+                .toArray();
     }
 
 
     public static long nthNonZeroMagicalNumber(final int N, final int smaller, final int larger) {
-        final Integer[] stepsInCycle = steps(smaller, larger);
+        final int[] stepsInCycle = steps(smaller, larger);
         final long lcm = stepsInCycle[stepsInCycle.length - 1];
         final int inOneCycle = stepsInCycle.length;
         final int fullCycleCount = N / inOneCycle;
@@ -90,8 +79,9 @@ public static Integer[] steps(final int smaller, final int larger) {
     }
 
 
-  /*  public static void main(String[] args) {
+   /* public static void main(String[] args) {
         int result = nthMagicalNumber(4, 2, 3);
         System.out.println(result);
     }*/
+
 }

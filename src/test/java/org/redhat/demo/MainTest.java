@@ -50,4 +50,49 @@ public class MainTest {
         int randomB = rand.nextInt();
         assertEquals(Main.nthMagicalNumber(1, randomA, randomB), ((Math.min(randomA, randomB)) % MODULO));
     }
+
+    //IntOption test
+
+    @Test
+    public void nthMagicalNumberTestIntOption() {
+        assertEquals(IntOption.nthMagicalNumber(49995, 456, 345), 9855984);
+    }
+
+    @Test
+    public void nthMagicalNumberNequalZeroTestIntOption() {
+        Random rand = new Random();
+        int randomA = rand.nextInt();
+        int randomB = rand.nextInt();
+        assertEquals(IntOption.nthMagicalNumber(0, randomA, randomB), 0);
+    }
+
+    @Test
+    public void nthMagicalNumberAandBEqualTestIntOption() {
+        Random rand = new Random();
+        int randomA = rand.nextInt();
+        int N = rand.nextInt();
+        assertEquals(IntOption.nthMagicalNumber(N, randomA, randomA), ((long) randomA * (long) N) % MODULO);
+    }
+
+    @Test
+    public void returnEvaluatedTestIntOption() {
+
+        assertEquals(IntOption.nthMagicalNumber(53776, 22434, 31343), 703148862);
+    }
+
+    @Test
+    public void lowestCommonMultipleTestIntOption() {
+
+        assertEquals(IntOption.lowestCommonMultiple(34, 56), 952);
+    }
+
+    @Test
+    public void nthMagicalNumberNequalOneTestIntOption() {
+        Random rand = new Random();
+        int randomA = rand.nextInt();
+        int randomB = rand.nextInt();
+        assertEquals(IntOption.nthMagicalNumber(1, randomA, randomB), ((Math.min(randomA, randomB)) % MODULO));
+    }
+
+
 }
